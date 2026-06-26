@@ -63,11 +63,6 @@
       }
     ]
   },
-  "Generic": {
-    "name": "Generic",
-    "frames": []
-  }
-}
 {
   "Raven": {
     "name": "Raven",
@@ -113,7 +108,7 @@
             },
             {
             input": "2,4",
-            "range": "h,h,
+            "range": "h,h",
             "DMG": "14,19",
             "speed": "nd"
             "block": "-12",
@@ -182,6 +177,8 @@
             "block": "-3",
             "hit": "KD",
             "ch": "KD"
-            },
-            {
+            },     
+           }
+          ]
+         },
             
