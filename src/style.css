@@ -1,0 +1,8 @@
+@import "tailwindcss";
+* {
+  scrollbar-color: #ff3f993b #f0f0f000;
+}
+a.active {
+  background: oklch(65.613% 0.24084 353.961 / 0.404);
+  color: #ffffff;
+}
