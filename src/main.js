@@ -155,6 +155,7 @@ const renderFrameData = (characterData) => {
   });
 };
 window.addEventListener("hashchange", async () => {
+  console.log("TESTEt");
   try {
     document
       .querySelector(`a.sm\\:bg-gradient-to-l`)
@@ -167,11 +168,16 @@ window.addEventListener("hashchange", async () => {
     const currentA = document.querySelector(
       `nav a[href="${window.location.hash}"]`,
     );
-    currentA.classList.add("sm:bg-gradient-to-l");
-    currentA.classList.add("border-b-1");
+    if (currentA) {
+      currentA.classList.add("sm:bg-gradient-to-l");
+      currentA.classList.add("border-b-1");
+    }
+
     const character = window.location.hash.substring(1);
     renderFrameData(await getData(character));
-  } catch (error) {}
+  } catch (error) {
+    alert(error);
+  }
 });
 window.addEventListener("DOMContentLoaded", async () => {
   try {
