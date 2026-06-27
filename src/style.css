@@ -6,3 +6,9 @@ a.active {
   background: oklch(65.613% 0.24084 353.961 / 0.404);
   color: #ffffff;
 }
+.test {
+  height: 90%;
+}
+th {
+  background: #05020c;
+}

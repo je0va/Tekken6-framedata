@@ -1,0 +1,118 @@
+{
+  "name": "Raven",
+  "frames": [
+    {
+      "action": "Geral",
+      "data": [
+        {
+          "input": "1",
+          "range": "h",
+          "DMG": "8",
+          "speed": "10",
+          "block": "+1",
+          "hit": "+8",
+          "ch": "+8"
+        },
+        {
+          "input": "1,2",
+          "range": "h,h",
+          "DMG": "8,14",
+          "speed": "nd",
+          "block": "-1",
+          "hit": "+6",
+          "ch": "+6"
+        },
+        {
+          "input": "2",
+          "range": "h",
+          "DMG": "14",
+          "speed": "10",
+          "block": "-2",
+          "hit": "+7",
+          "ch": "+7"
+        },
+        {
+          "input": "2,3",
+          "range": "h,l",
+          "DMG": "14,12",
+          "speed": "nd",
+          "block": "-12",
+          "hit": "-1",
+          "ch": "-1"
+        },
+        {
+          "input": "2,4",
+          "range": "h,h",
+          "DMG": "14,19",
+          "speed": "nd",
+          "block": "-12",
+          "hit": "KD",
+          "ch": "KD"
+        },
+        {
+          "input": "3",
+          "range": "m",
+          "DMG": "14",
+          "speed": "14~15",
+          "block": "-12",
+          "hit": "-1",
+          "ch": "-1"
+        },
+        {
+          "input": "3,3",
+          "range": "m,h",
+          "DMG": "14,12",
+          "speed": "nd",
+          "block": "-8",
+          "hit": "0",
+          "ch": "0"
+        },
+        {
+          "input": "3,3,4",
+          "range": "nd",
+          "DMG": "14,12,26",
+          "speed": "m,h,h",
+          "block": "-9",
+          "hit": "KD",
+          "ch": "KD"
+        },
+        {
+          "input": "3,3,4 ~b h",
+          "range": "nd",
+          "DMG": "14,12,26",
+          "speed": "m,h,h",
+          "block": "-9?",
+          "hit": "KD",
+          "ch": "KD"
+        },
+        {
+          "input": "3:4",
+          "range": "m,m",
+          "DMG": "15,18",
+          "speed": "25",
+          "block": "-10",
+          "hit": "KD",
+          "ch": "KD"
+        },
+        {
+          "input": "4:3",
+          "range": "m,m",
+          "DMG": "9,12",
+          "speed": "17",
+          "block": "-16",
+          "hit": "KD",
+          "ch": "KD"
+        },
+        {
+          "input": "4:3,3",
+          "range": "m,m,h",
+          "DMG": "9,12,27",
+          "speed": "nd",
+          "block": "-3",
+          "hit": "KD",
+          "ch": "KD"
+        }
+      ]
+    }
+  ]
+}

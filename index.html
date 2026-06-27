@@ -10,24 +10,24 @@
   <body>
     <div id="app">
       <div
-        class="w-full p-2 sm:p-5 flex justify-center flex-col-reverse sm:flex-row h-dvh p-4h bg-gray-900 bg-gradient-to-tr from-pink-900/5 to-stone-950/20"
+        class="w-full p-2 sm:p-5 flex justify-center flex-col-reverse sm:flex-row h-dvh bg-gray-900 bg-gradient-to-tr from-pink-900/5 to-stone-950/20"
       >
         <nav
           id="main-nav"
-          class="sm:w-50 max-w-full overflow-x-auto overflow-y-auto flex sm:flex-col text-white"
+          class="h-10/100 sm:h-full sm:w-50 max-w-full overflow-x-auto overflow-y-auto flex sm:flex-col text-white"
         ></nav>
-        <div
-          class="flex flex-1 flex-col items-center justgify-center max-w-dvw gap-2 overflow-y-auto scrollbar-thumb-slate-900/60 scrollbar-track-slate-900/10"
-        >
-          <div
-            class="sticky inset-0 bg-gray-900 w-full text-gray-300 text-center sm:text-xl"
-          >
+        <div class="flex h-90/100 sm:h-full flex-1 flex-col gap-2">
+          <div class="h-5/100 w-full text-gray-300 text-center sm:text-xl">
             <p id="CharName">Dragunov</p>
           </div>
           <div
-            id="main-container"
-            class="flex flex-col items-center justgify-center w-full sm:w-auto max-w-dvw gap-2"
-          ></div>
+            class="h-95/100 items-center flex flex-col w-full max-w-full overflow-y-aumto"
+          >
+            <div
+              id="main-container"
+              class="flex flex-col h-full w-full sm:w-auto max-w-dvw"
+            ></div>
+          </div>
         </div>
       </div>
     </div>

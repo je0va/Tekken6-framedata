@@ -5,30 +5,56 @@ import heroImg from "./assets/hero.png";
 import { setupCounter } from "./counter.js";
 // import framedatas from "./data/framedata.json";
 const mainNav = document.querySelector("#main-nav");
-let framedatas = {};
-const getData = async () => {
+
+const getIndexes = async () => {
+  try {
+    const response = await fetch(`${import.meta.env.BASE_URL}data/index.json`);
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.log("Erro ao carregar o JSON da lista de personagens: " + error);
+    return "Erro";
+  }
+};
+
+const getData = async (character) => {
   try {
     const response = await fetch(
-      `${import.meta.env.BASE_URL}data/framedata.json`,
+      `${import.meta.env.BASE_URL}data/${character}.json`,
     );
-
     const data = await response.json();
+    console.log(data);
     return data;
   } catch (error) {
     console.log("Erro ao carregar o JSON: " + error);
+    return "Erro";
   }
 };
-framedatas = getData();
 
-const renderFrameData = (character) => {
+const renderFrameData = (characterData) => {
+  if (characterData == "Erro") {
+    const target = document.querySelector("#main-container");
+    target.innerHTML = "";
+    document.querySelector("#CharName").innerText = "Erro";
+    const errorContent = document.createElement("h1");
+    errorContent.innerText = "Erro: Frame data não encontrada ou indisponível";
+    errorContent.style.width = "100%";
+    errorContent.style.color = "red";
+    target.append(errorContent);
+    return;
+  }
+
   try {
-    document.querySelector("#CharName").innerText = framedatas[character].name;
-  } catch {}
+    document.querySelector("#CharName").innerText = characterData.name;
+  } catch (e) {
+    console.log(e);
+  }
 
   const target = document.querySelector("#main-container");
   target.innerHTML = ``;
-
-  framedatas[character].frames.forEach((action) => {
+  console.log("here" + characterData);
+  characterData.frames.forEach((action) => {
     const div = document.createElement("div");
     const h1 = document.createElement("h1");
     h1.innerText = "TESTE";
@@ -37,65 +63,50 @@ const renderFrameData = (character) => {
     div.innerHTML = ` 
               <h1 class="text-gray-100 ">${action.action} </h1>
               <div id=${action.action}
-                class="max-w-full bg-gray-950/90 bg-gray-800 flex bg-gradient-to-b from-gray-950/80 from-20% to-gray-900/30"
+                class="max-w-full h-full max-h-130 sm:max-h-200 bg-gray-950/90   flex bg-gradient-to-r from-gray-950/80 from-20% to-black/50 "
               >
-                <table id="mobile-table"
-                  class="sm:hidden  table-auto sm:w-200 border-y-1 border-t-pink-950/0 border-b-pink-950/50"
-                >
-                  <thead class="text-gray-300 border-x-gray-800/0 border-x-1">
-                    <tr class=" ">
-                      <th class="p-2">
-                        <div class="flex w-full">
-                          <p class="">INPUT</p>
-                        </div>
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody id=${"mobile-body-" + action.action} class="text-gray-500">
-             
-                  </tbody>
-                </table>
-                <div class="overflow-x-auto overscroll-hidden max-w-full">
+               
+                <div class="tefst h-full overflow-x-auto bg-gradient-to-r from-gray-950 from-20% to-pink-900/0  max-w-full ">
                   <table
-                    class="table-auto sm:w-200 border-y-1 border-t-pink-950/0 border-b-pink-950/50"
+                    class="table-auto  sm:w-200 bordder-y-1 border-t-pink-950 border-b-pink-950"
                   >
-                    <thead class="text-gray-300 border-x-gray-800/0 border-x-1">
+                    <thead class="text-gray-300      bordjer-x-pink-800 bordder-r-1">
                       <tr class="">
-                        <th class="p-2 hidden sm:block">
+                        <th class="p-2 sticky top-0 ">
                           <div class="flex w-full">
                             <p>INPUT</p>
                           </div>
                         </th>
-                        <th class="p-2">
+                        <th class="p-2 sticky top-0">
                           <div class="flex w-full">
                             <p>RANGE</p>
                           </div>
                         </th>
-                        <th class="p-2">
+                        <th class="p-2 sticky top-0">
                           <div class="flex w-full">
                             <p>DMG</p>
                           </div>
                         </th>
 
-                        <th class="p-2">
+                        <th class="p-2 sticky top-0">
                           <div class="flex w-full">
                             <p>SPEED</p>
                           </div>
                         </th>
 
-                        <th class="p-2">
+                        <th class="p-2 sticky top-0">
                           <div class="flex w-full">
                             <p>BLOCK</p>
                           </div>
                         </th>
 
-                        <th class="p-2">
+                        <th class="p-2 sticky top-0">
                           <div class="flex w-full">
                             <p>HIT</p>
                           </div>
                         </th>
 
-                        <th class="p-2">
+                        <th class="p-2 sticky top-0">
                           <div class="flex w-full">
                             <p>CH</p>
                           </div>
@@ -106,8 +117,8 @@ const renderFrameData = (character) => {
                   </table>
                 </div></div>`;
     target.append(div);
-    const mobileBody = document.querySelector("#mobile-body-" + action.action);
-    mobileBody.innerHTML = "";
+    // const mobileBody = document.querySelector("#mobile-body-" + action.action);
+    // mobileBody.innerHTML = "";
     const mainBody = document.querySelector("#main-body-" + action.action);
     mainBody.innerHTML = "";
     action.data.forEach((input) => {
@@ -117,7 +128,7 @@ const renderFrameData = (character) => {
         td.innerText = input.input;
         td.className = "p-2";
         tr.className =
-          "border-t-1 border-t-pink-950/20 hover:border-l-pink-950/20 border-x-gray-800/0 border-x-1 hover:bg-gradient-to-r from-pink-950/30 to-pink-950/70";
+          "border-t-1 text-nowrap border-t-pink-950/20 hover:border-l-pink-950/20 border-x-gray-800/0 border-x-1 hover:bg-gradient-to-r from-pink-950/30 to-pink-950/70";
         tr.append(td);
         mobileBody.append(tr);
       };
@@ -128,21 +139,22 @@ const renderFrameData = (character) => {
           (data) => {
             const td = document.createElement("td");
             td.innerText = input[data];
-            td.className = data === "input" ? "p-2 hidden sm:block" : "p-2";
+            td.className =
+              data === "input" ? "p-2 " : "p-2 border-x-pink-950/70 border-x-1";
             tr.append(td);
           },
         );
 
         tr.className =
-          "border-t-1 border-t-pink-950/20 hover:border-l-pink-950/20 border-x-gray-800/0 border-x-1 hover:bg-gradient-to-r from-pink-950/30 to-pink-950/70";
+          "border-t-1 text-nowrap border-t-pink-950/45 hover:border-l-pink-950/20 border-x-pink-900/50 border-r-1 hover:bg-gradient-to-r from-pink-950/30 to-pink-950/70";
         mainBody.append(tr);
       };
-      renderMobileTr();
+      // renderMobileTr();
       renderMainTr();
     });
   });
 };
-window.addEventListener("hashchange", () => {
+window.addEventListener("hashchange", async () => {
   try {
     document
       .querySelector(`a.sm\\:bg-gradient-to-l`)
@@ -158,18 +170,18 @@ window.addEventListener("hashchange", () => {
     currentA.classList.add("sm:bg-gradient-to-l");
     currentA.classList.add("border-b-1");
     const character = window.location.hash.substring(1);
-    renderFrameData(character);
+    renderFrameData(await getData(character));
   } catch (error) {}
 });
 window.addEventListener("DOMContentLoaded", async () => {
   try {
-    framedatas = await getData();
-    Object.values(framedatas).forEach((value) => {
+    const indexes = await getIndexes();
+    indexes.chars.forEach((value) => {
       const a = document.createElement("a");
       a.className =
         "text-text text-nowrap hover:bg-pink-600/20 hover:text-100 border-b-pink-700 p-4 from-pink-900/30 to-pink-900/70";
-      a.innerText = value.name;
-      a.href = "#" + value.name;
+      a.innerText = value;
+      a.href = "#" + value;
       mainNav.append(a);
     });
     if (window.location.hash) {
@@ -182,7 +194,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       }
       const character = window.location.hash.substring(1);
 
-      renderFrameData(character);
+      renderFrameData(await getData(character));
     }
   } catch (e) {
     console.log(e);
