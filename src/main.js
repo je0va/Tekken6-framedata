@@ -142,6 +142,17 @@ const renderFrameData = (characterData) => {
             td.className =
               data === "input" ? "p-2 " : "p-2 border-x-pink-950/70 border-x-1";
             tr.append(td);
+            tr.onclick = () => {
+              // const search = new Array(
+              //   document.getElementsByClassName("bg-gradient-to-r"),
+              // );
+              // search.forEach((e) => {
+              //   if (e.classList.contains("bg-gradient-to-r")) {
+              //     e.classList.toggle("bg-gradient-tos-r");
+              //   }
+              // });
+              tr.classList.toggle("bg-gradient-to-r");
+            };
           },
         );
 
