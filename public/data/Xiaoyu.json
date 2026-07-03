@@ -489,7 +489,7 @@
 },
 {
 "input":"ub3",
-"range":m"",
+"range":"m",
 "DMG":"13",
 "speed":"16",
 "block":"-12",
