@@ -941,7 +941,7 @@
 "ch":"KD"
 },
 {
-"input":"2",
+"input":"2 ( small delay )",
 "range":"m",
 "DMG":"36",
 "speed":"72",
@@ -950,7 +950,7 @@
 "ch":"KD"
 },
 {
-"input":"2",
+"input":"2( big delay )",
 "range":"m",
 "DMG":"42",
 "speed":"102",
@@ -986,7 +986,7 @@
 "ch":"KD"
 },
 {
-"input":"2+3",
+"input":"2+3 ( small delay )",
 "range":"!",
 "DMG":"48,10",
 "speed":"111",
@@ -995,7 +995,7 @@
 "ch":"KD"
 },
 {
-"input":"2+3",
+"input":"2+3 ( big delay) ",
 "range":"!",
 "DMG":"48,40",
 "speed":"141",
@@ -1088,7 +1088,7 @@
 "ch":"+3"
 },
 {
-"input":"3",
+"input":"BT 3",
 "range":"m",
 "DMG":"24",
 "speed":"18 BT",
@@ -1106,7 +1106,7 @@
 "ch":"KD"
 },
 {
-"input":"1+2",
+"input":"BT 1+2",
 "range":"m,m",
 "DMG":"7,7",
 "speed":"16 ~ 17",
@@ -1115,7 +1115,7 @@
 "ch":"+6"
 },
 {
-"input":"1+2, 1+2",
+"input":"BT 1+2, 1+2",
 "range":"m,m,m,m",
 "DMG":"7,7,7,7",
 "speed":"CR",
@@ -1133,7 +1133,7 @@
 "ch":""
 },
 {
-"input":"d3+4",
+"input":"BT d3+4",
 "range":"",
 "DMG":"",
 "speed":"",
@@ -1160,7 +1160,7 @@
 "ch":""
 },
 {
-"input":"f1+2",
+"input":"BT f1+2",
 "range":"m",
 "DMG":"25",
 "speed":"35",
@@ -1169,7 +1169,7 @@
 "ch":"+5 KD"
 },
 {
-"input":"f3+4",
+"input":"BT f3+4",
 "range":"",
 "DMG":"",
 "speed":"BT",
@@ -1178,7 +1178,7 @@
 "ch":""
 },
 {
-"input":"f3+4, 3+4",
+"input":"BT f3+4, 3+4",
 "range":"m",
 "DMG":"26",
 "speed":"25 BT",
@@ -1187,7 +1187,7 @@
 "ch":"KD"
 },
 {
-"input":"b3+4",
+"input":"BT b3+4",
 "range":"",
 "DMG":"",
 "speed":"BT",
@@ -1196,7 +1196,7 @@
 "ch":""
 },
 {
-"input":"d3",
+"input":"BT d3",
 "range":"l",
 "DMG":"16",
 "speed":"17 BT",
@@ -1205,7 +1205,7 @@
 "ch":"KD"
 },
 {
-"input":"d~3",
+"input":"d BT~3",
 "range":"l",
 "DMG":"16",
 "speed":"17",
@@ -1214,7 +1214,7 @@
 "ch":"KD"
 },
 {
-"input":"d4",
+"input":"BT d4",
 "range":"l",
 "DMG":"18",
 "speed":"31 CR",
@@ -1223,7 +1223,7 @@
 "ch":"KD"
 },
 {
-"input":"d4",
+"input":"BT d4",
 "range":"l",
 "DMG":"12",
 "speed":"32? CR",
@@ -1241,7 +1241,7 @@
 "ch":""
 },
 {
-"input":"db_df4",
+"input":"f_back in db_df4",
 "range":"",
 "DMG":"0",
 "speed":"15",
@@ -1250,7 +1250,7 @@
 "ch":"+2"
 },
 {
-"input":"ff1",
+"input":"BT ff1",
 "range":"l",
 "DMG":"20",
 "speed":"33?",
@@ -1286,7 +1286,7 @@
 "ch":"Throw"
 },
 {
-"input":"ff1+3_ff2+4",
+"input":"ff+1+3_ff+2+4",
 "range":"",
 "DMG":"35",
 "speed":"",
