@@ -5,7 +5,9 @@ import heroImg from "./assets/hero.png";
 import { setupCounter } from "./counter.js";
 // import framedatas from "./data/framedata.json";
 const mainNav = document.querySelector("#main-nav");
-
+const charList = document.querySelector("#char-list");
+const charName = document.querySelector("#CharName");
+const mainContainer = document.querySelector("#main-container");
 const slugify = (text) => {
   return text
     .toString()
@@ -42,12 +44,49 @@ const getData = async (character) => {
     return "Erro";
   }
 };
-
+const createCharCard = (char) => {
+  const a = document.createElement("a");
+  a.className =
+    "border-gray-700  w-25  cursor-pointer items-center bg-black/70 border-1 h-min flex flex-col";
+  a.href = "#" + char;
+  const imgContainer = document.createElement("div");
+  imgContainer.className = "w-full h-ffull";
+  const imgElement = document.createElement("img");
+  imgElement.className = "w-full h-full  aspect-square object-cover";
+  imgElement.src = `src/chars-imgs/${char}.jpg`;
+  imgElement.alt = char;
+  imgContainer.append(imgElement);
+  const nameContainer = document.createElement("div");
+  nameContainer.className = "";
+  const p = document.createElement("p");
+  p.className = "text-lg text-white";
+  p.innerText = char;
+  nameContainer.append(p);
+  a.append(imgContainer, nameContainer);
+  return a;
+};
+const renderCharList = (list) => {
+  charList.innerHTML = "";
+  charName.innerText = "Lista";
+  if (!mainContainer.classList.contains("hidden")) {
+    mainContainer.classList.add("hidden");
+  }
+  mainContainer.innerHTML = "";
+  if (document.querySelector("#char-list").classList.contains("hidden")) {
+    document.querySelector("#char-list").classList.remove("hidden");
+  }
+  list.forEach((char) => {
+    const a = createCharCard(char);
+    document.querySelector("#char-list").append(a);
+  });
+};
 const renderFrameData = (characterData) => {
+  mainContainer.classList.remove("hidden");
+  charList.classList.add("hidden");
   if (characterData == "Erro" || !characterData.frames) {
     const target = document.querySelector("#main-container");
     target.innerHTML = "";
-    document.querySelector("#CharName").innerText = "Erro";
+    charName.innerText = "Erro";
     const errorContent = document.createElement("h1");
     errorContent.innerText = "Erro: Framedata não encontrada ou indisponível";
     errorContent.style.width = "100%";
@@ -57,10 +96,8 @@ const renderFrameData = (characterData) => {
   }
 
   try {
-    document.querySelector("#CharName").innerText = characterData.name;
-  } catch (e) {
-    console.log(e);
-  }
+    charName.innerText = characterData.name;
+  } catch (e) {}
   const createTr = (mainBody, input) => {
     const tr = document.createElement("tr");
     ["input", "range", "DMG", "speed", "block", "hit", "ch"].forEach((data) => {
@@ -185,7 +222,12 @@ window.addEventListener("hashchange", async () => {
     }
 
     const character = window.location.hash.substring(1);
-    renderFrameData(await getData(character));
+    if (character) {
+      renderFrameData(await getData(character));
+    } else {
+      const indexes = await getIndexes();
+      renderCharList(indexes.chars);
+    }
   } catch (error) {
     alert(error);
   }
@@ -217,5 +259,15 @@ window.addEventListener("DOMContentLoaded", async () => {
     }
   } catch (e) {
     console.log(e);
+  }
+});
+window.addEventListener("DOMContentLoaded", async () => {
+  if (!window.location.hash) {
+    try {
+      const indexes = await getIndexes();
+      renderCharList(indexes.chars);
+    } catch (e) {
+      console.log(e);
+    }
   }
 });

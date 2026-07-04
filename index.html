@@ -23,7 +23,7 @@
       >
         <nav
           id="main-nav"
-          class="h-8/100 sm:pt-2 sm:fixed inset-0 text-lg sm:text-xl bg-black/80 sm:bg-transparent border-t-gray-500 border-t-1 sm:border-none sm:h-full items-cjenter sm:items-start sm:w-50 max-w-full overflow-x-auto overflow-dy-auto flex sm:flex-col text-white/80"
+          class="hidden h-8/100 sm:pt-2 sm:fixed inset-0 text-lg sm:text-xl bg-black/80 sm:bg-transparent border-t-gray-500 border-t-1 sm:border-none sm:h-full items-cjenter sm:items-start sm:w-50 max-w-full overflow-x-auto overflow-dy-auto flex sm:flex-col text-white/80"
         ></nav>
         <div class="flex h-92/100 sm:h-full flex-1 flex-col gap-2">
           <div class="h-5/100 w-full text-gray-300 text-center sm:text-xl">
@@ -36,7 +36,11 @@
           >
             <div
               id="main-container"
-              class="flex flex-col gap-5 h-full w-full sm:w-auto max-w-dvw"
+              class="flex gap-5 h-full w-full sm:w-auto max-w-dvw"
+            ></div>
+            <div
+              id="char-list"
+              class="justify-center gap-4 max-h-full w-full flex flex-wrap overflow-y-auto"
             ></div>
           </div>
         </div>
