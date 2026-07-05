@@ -8,6 +8,11 @@ const mainNav = document.querySelector("#main-nav");
 const charList = document.querySelector("#char-list");
 const charName = document.querySelector("#CharName");
 const mainContainer = document.querySelector("#main-container");
+const titleImgDiv = document.querySelector("#title-char-img-div");
+const contentDiv = document.querySelector("#content");
+const filterBtnDiv = document.querySelector("#filter-btn-div");
+const backBtnDiv = document.querySelector("#back-btn-div");
+const headerDiv = document.querySelector("#header-div");
 const slugify = (text) => {
   return text
     .toString()
@@ -30,7 +35,26 @@ const getIndexes = async () => {
     return "Erro";
   }
 };
-
+const hideHeader = () => {
+  filterBtnDiv.classList.add("hidden");
+  backBtnDiv.classList.add("hidden");
+  if (headerDiv.classList.contains("justify-between")) {
+    headerDiv.classList.remove("justify-between");
+    headerDiv.classList.add("justify-center");
+  }
+};
+const showHeader = () => {
+  if (filterBtnDiv.classList.contains("hidden")) {
+    filterBtnDiv.classList.remove("hidden");
+  }
+  if (backBtnDiv.classList.contains("hidden")) {
+    backBtnDiv.classList.remove("hidden");
+  }
+  if (headerDiv.classList.contains("justify-center")) {
+    headerDiv.classList.add("justify-between");
+    headerDiv.classList.remove("justify-center");
+  }
+};
 const getData = async (character) => {
   try {
     const response = await fetch(
@@ -47,27 +71,34 @@ const getData = async (character) => {
 const createCharCard = (char) => {
   const a = document.createElement("a");
   a.className =
-    "border-gray-700  w-25  cursor-pointer items-center bg-black/70 border-1 h-min flex flex-col";
+    "border-gray-700  w-20 sm:w-24  cursor-pointer items-center bg-black/70 border-1 h-min flex flex-col";
   a.href = "#" + char;
   const imgContainer = document.createElement("div");
   imgContainer.className = "w-full h-ffull";
   const imgElement = document.createElement("img");
   imgElement.className = "w-full h-full  aspect-square object-cover";
-  imgElement.src = `src/chars-imgs/${char}.jpg`;
+  imgElement.src = `${import.meta.env.BASE_URL}/chars-imgs/${char}.jpg`;
   imgElement.alt = char;
   imgContainer.append(imgElement);
   const nameContainer = document.createElement("div");
   nameContainer.className = "";
   const p = document.createElement("p");
-  p.className = "text-lg text-white";
+  p.className = "text-base text-white";
   p.innerText = char;
   nameContainer.append(p);
   a.append(imgContainer, nameContainer);
   return a;
 };
 const renderCharList = (list) => {
+  hideHeader();
   charList.innerHTML = "";
   charName.innerText = "Lista";
+  if (contentDiv.classList.contains("sm:w-min")) {
+    contentDiv.classList.remove("sm:w-min");
+  }
+  if (!titleImgDiv.classList.contains("hidden")) {
+    titleImgDiv.classList.add("hidden");
+  }
   if (!mainContainer.classList.contains("hidden")) {
     mainContainer.classList.add("hidden");
   }
@@ -83,20 +114,33 @@ const renderCharList = (list) => {
 const renderFrameData = (characterData) => {
   mainContainer.classList.remove("hidden");
   charList.classList.add("hidden");
+
   if (characterData == "Erro" || !characterData.frames) {
     const target = document.querySelector("#main-container");
+    hideHeader();
     target.innerHTML = "";
     charName.innerText = "Erro";
     const errorContent = document.createElement("h1");
     errorContent.innerText = "Erro: Framedata não encontrada ou indisponível";
     errorContent.style.width = "100%";
     errorContent.style.color = "red";
+    if (contentDiv.classList.contains("sm:w-min")) {
+      contentDiv.classList.remove("sm:w-min");
+    }
+    titleImgDiv.classList.add("hidden");
     target.append(errorContent);
     return;
   }
 
   try {
+    showHeader();
+    if (!contentDiv.classList.contains("sm:w-min")) {
+      contentDiv.classList.add("sm:w-min");
+    }
     charName.innerText = characterData.name;
+    titleImgDiv.classList.remove("hidden");
+    document.querySelector("#title-char-img").src =
+      `${import.meta.env.BASE_URL}/chars-imgs/${characterData.name}.jpg`;
   } catch (e) {}
   const createTr = (mainBody, input) => {
     const tr = document.createElement("tr");
@@ -107,12 +151,12 @@ const renderFrameData = (characterData) => {
       tr.append(td);
       tr.onclick = () => {
         tr.classList.toggle("bg-gradient-to-r");
-        tr.classList.toggle("text-blue-200/80");
+        tr.classList.toggle("text-blue-300");
       };
     });
 
     tr.className =
-      "cursor-pointer text-nowrap   hover:bg-gradient-to-r from-slate-900/70 to-gray-900/70";
+      "cursor-pointer text-nowrap   hover:bg-gradient-to-r from-slate-400/40 to-gray-400/40";
     mainBody.append(tr);
   };
   const target = document.querySelector("#main-container");
@@ -126,7 +170,7 @@ const renderFrameData = (characterData) => {
     div.innerHTML = ` 
                <h1 class="h-min  text-gray-100 "></h1>
               <div id="table-unique-container"}
-                class="max-w-full h-95/100 max-h-d130 sm:max-h-200 bg-black/70 bg-gradijent-to-r from-gray-950/40 from-20% to-black/40 "
+                class="max-w-full h-95/100 max-h-d130 sm:max-h-200 bg-black/66 bg-gradijent-to-r from-gray-950/40 from-20% to-black/40 "
               >
                
                 <div class="h-full overflow-x-auto max-w-full ">

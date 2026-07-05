@@ -19,28 +19,78 @@
         class="bg-[url(/src/assets/noise.svg)] z-1 bg-no-repeat bg-center bg-cover h-dvh fixed inset-0 opacity-35"
       ></div> -->
       <div
-        class="w-full fixed inset-0 p-1 pt-2 sm:p-5 flex justify-center z-90 flex-col-reverse sm:flex-row h-dvh"
+        id="content"
+        class="sm:w-min mx-auto fixed inset-0 p-1 pt-2 sm:p-5 flex justify-cventer z-90 flex-col-reverse sm:flex-row h-dvh"
       >
         <nav
           id="main-nav"
           class="hidden h-8/100 sm:pt-2 sm:fixed inset-0 text-lg sm:text-xl bg-black/80 sm:bg-transparent border-t-gray-500 border-t-1 sm:border-none sm:h-full items-cjenter sm:items-start sm:w-50 max-w-full overflow-x-auto overflow-dy-auto flex sm:flex-col text-white/80"
         ></nav>
-        <div class="flex h-92/100 sm:h-full flex-1 flex-col gap-2">
-          <div class="h-5/100 w-full text-gray-300 text-center sm:text-xl">
-            <p id="CharName" class="text-xl text font-black">
-              Tekken 6 Framedata
-            </p>
+        <div
+          class="flex h-92/100 sm:h-fulljustify-center flex-1 flex-col gap-2"
+        >
+          <div class="max-h-16/100 w-full flefx items-start gap-2">
+            <div id="back-btn-div" class="h-5/10 text-white flex items-center">
+              <a class="items-center flex hover:text-blue-400" href="/">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 mr-2"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <span class="text-base font-medium">Voltar para a seleção</span>
+              </a>
+            </div>
+            <!-- <div id="" class="hidden text-2xl text-stone-300 font-black px-1">
+              teste
+            </div> -->
+            <div id="header-div" class="h-5/10 w-full flex justify-between">
+              <div
+                id="title"
+                class="h-full flex text-gray-300 justify-center items-center text-center sm:text-xl"
+              >
+                <div
+                  id="title-char-img-div"
+                  class="h-full hidden border-black border-2"
+                >
+                  <img
+                    id="title-char-img"
+                    class="w-full h-full aspect-square object-cover"
+                    src=""
+                    alt=""
+                  />
+                </div>
+                <p
+                  id="CharName"
+                  class="text-2xl text-stone-300 font-black px-1"
+                >
+                  Tekken 6 Framedata
+                </p>
+              </div>
+              <div
+                id="filter-btn-div"
+                class="text-blue-500 text-xl h-full flex items-center"
+              >
+                <p class="hidden">Filtros</p>
+              </div>
+            </div>
           </div>
           <div
-            class="h-95/100 sm:items-center flex flex-col w-full max-w-full overfflow-y-auto"
+            class="h-95/100 sm:items-center flex flex-col w-full sm:w-full max-w-full overfflow-y-auto"
           >
             <div
               id="main-container"
-              class="flex gap-5 h-full w-full sm:w-auto max-w-dvw"
+              class="flex gap-5 h-full sm:w-auto max-w-dvw"
             ></div>
             <div
               id="char-list"
-              class="justify-center gap-4 max-h-full w-full flex flex-wrap overflow-y-auto"
+              class="gap-1 sm:justify-center max-h-full w-full flex flex-wrap overflow-y-auto"
             ></div>
           </div>
         </div>
