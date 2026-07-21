@@ -13,6 +13,8 @@ const contentDiv = document.querySelector("#content");
 const filterBtnDiv = document.querySelector("#filter-btn-div");
 const backBtnDiv = document.querySelector("#back-btn-div");
 const headerDiv = document.querySelector("#header-div");
+const backBtn = document.querySelector("#back-btn");
+backBtn.href = import.meta.env.BASE_URL;
 const slugify = (text) => {
   return text
     .toString()
