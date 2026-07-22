@@ -30,7 +30,6 @@ inputs.forEach((i) => {
     filter.ch = [];
     document.querySelectorAll("#range-check-div input:checked").forEach((i) => {
       if (i.checked) {
-        console.log(1323332323);
         filter.range.push(i.value);
       }
     });
@@ -167,7 +166,7 @@ const renderCharList = (list) => {
 };
 const renderFrameData = (characterData) => {
   currentCharData = characterData;
-  console.log(characterData);
+
   mainContainer.classList.remove("hidden");
   charList.classList.add("hidden");
 
@@ -349,7 +348,6 @@ const checkInput = (input) => {
     if (filter.range.length === 0) return true;
     const arr = [];
     filter.range.forEach((f) => {
-      console.log("F " + f);
       arr.push(input.range.includes(f));
     });
     if (arr.includes(true)) return true;
