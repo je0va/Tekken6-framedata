@@ -19,17 +19,134 @@
         class="bg-[url(/src/assets/noise.svg)] z-1 bg-no-repeat bg-center bg-cover h-dvh fixed inset-0 opacity-35"
       ></div> -->
       <div
-        id="content"
-        class="sm:w-min mx-auto fixed inset-0 p-1 pt-2 sm:p-5 flex justify-cventer z-90 flex-col-reverse sm:flex-row h-dvh"
+        id="filters-card-container"
+        class="fixed hidden z-99 h-full w-full bg-black/40 flex justify-center items-center"
       >
-        <nav
-          id="main-nav"
-          class="hidden h-8/100 sm:pt-2 sm:fixed inset-0 text-lg sm:text-xl bg-black/80 sm:bg-transparent border-t-gray-500 border-t-1 sm:border-none sm:h-full items-cjenter sm:items-start sm:w-50 max-w-full overflow-x-auto overflow-dy-auto flex sm:flex-col text-white/80"
-        ></nav>
         <div
-          class="flex h-92/100 sm:h-fulljustify-center flex-1 flex-col gap-2"
+          id="filters-card"
+          class="h-9/10 flex gap-7 flex-col max-w-95/100 w-110 bg-neutral-600 bg-gradient-to-tr from-indigo-800/27 to-black/65 p-2 border-1 border-gray-700 text-white"
         >
-          <div class="max-h-16/100 w-full flefx items-start gap-2">
+          <div class="w-full flex">
+            <div class="flex-1 items-center flex">
+              <p class="text-xl">Filtros</p>
+            </div>
+            <button
+              id="close-filter-card-btn"
+              class="cursor-pointer text-gray-500 hover:text-white text-2xl"
+            >
+              x
+            </button>
+          </div>
+          <div class="flex-1">
+            <form id="filter-form" class="flex flex-col gap-5">
+              <div class="flex flex-col gap-3">
+                <p>Range</p>
+                <div
+                  id="range-check-div"
+                  class="blorder-1 flex gap-2 px-2 p-1 flex-wrap"
+                >
+                  <div>
+                    <input type="checkbox" id="high" name="range" value="h" />
+                    <label for="high"> High</label><br />
+                  </div>
+                  <div>
+                    <input type="checkbox" id="medium" name="range" value="m" />
+                    <label for="medium"> Mid</label><br />
+                  </div>
+                  <div>
+                    <input type="checkbox" id="low" name="range" value="l" />
+                    <label for="low"> Low</label>
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-3">
+                <p>Block</p>
+                <div
+                  id="block-check-div"
+                  class="blorder-1 flex gap-2 px-2 p-1 flex-wrap"
+                >
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="positive-block"
+                      name="block"
+                      value="Positive"
+                    />
+                    <label for="positive-block"> Positive</label><br />
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="negative-block"
+                      name="block"
+                      value="Negative"
+                    />
+                    <label for="negative-block"> Negative</label><br />
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-3">
+                <p>Hit</p>
+                <div
+                  id="hit-check-div"
+                  class="blorder-1 flex gap-2 px-2 p-1 flex-wrap"
+                >
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="positive-hit"
+                      name="hit"
+                      value="Positive"
+                    />
+                    <label for="positive-hit"> Positive</label><br />
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="negative-hit"
+                      name="hit"
+                      value="Negative"
+                    />
+                    <label for="negative-hit"> Negative</label><br />
+                  </div>
+                </div>
+              </div>
+              <div class="flex flex-col gap-3">
+                <p>CH</p>
+                <div
+                  id="ch-check-div"
+                  class="blorder-1 flex gap-2 px-2 p-1 flex-wrap"
+                >
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="positive-ch"
+                      name="ch"
+                      value="Positive"
+                    />
+                    <label for="positive-ch"> Positive</label><br />
+                  </div>
+                  <div>
+                    <input
+                      type="checkbox"
+                      id="negative-ch"
+                      name="ch"
+                      value="Negative"
+                    />
+                    <label for="negative-ch"> Negative</label><br />
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div
+        id="content"
+        class="sm:w-min mx-auto fixed inset-0 p-1 pt-2 sm:p-5 flex z-90 flex-col-reverse sm:flex-row h-dvh"
+      >
+        <div class="flex h-92/100 flex-1 flex-col gap-2">
+          <div class="max-h-16/100 w-full items-start gap-2">
             <div id="back-btn-div" class="h-5/10 text-white flex items-center">
               <a
                 id="back-btn"
@@ -79,14 +196,19 @@
               </div>
               <div
                 id="filter-btn-div"
-                class="text-blue-500 text-xl h-full flex items-center"
+                class="text-white text-xl h-full flex items-end"
               >
-                <p class="hidden">Filtros</p>
+                <button
+                  id="filter-card-btn"
+                  class="bg-blue-900 hover:bg-blue-500 cursor-pointer p-1 rounded-xs"
+                >
+                  <p class="">Filtros</p>
+                </button>
               </div>
             </div>
           </div>
           <div
-            class="h-95/100 sm:items-center flex flex-col w-full sm:w-full max-w-full overfflow-y-auto"
+            class="h-95/100 sm:items-center flex flex-col w-full sm:w-full max-w-full"
           >
             <div
               id="main-container"

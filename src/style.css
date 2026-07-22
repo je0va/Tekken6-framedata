@@ -18,3 +18,21 @@ tr {
 tr:hover {
   transition: 0.9s background-color ease-in-out;
 }
+
+#filter-form input[type="checkbox"] ~ label {
+  border: #797979 solid 1px;
+  background: #00000025;
+  padding: 5px;
+  color: #cecece;
+}
+#filter-form input:checked ~ label {
+  background: oklch(42.422% 0.19829 265.514 / 0.7);
+  border-color: oklch(42.422% 0.19829 265.514 / 0.7);
+  color: #ffffff;
+}
+input[type="checkbox"] {
+  display: none;
+}
+label {
+  cursor: pointer;
+}

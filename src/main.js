@@ -15,6 +15,44 @@ const backBtnDiv = document.querySelector("#back-btn-div");
 const headerDiv = document.querySelector("#header-div");
 const backBtn = document.querySelector("#back-btn");
 backBtn.href = import.meta.env.BASE_URL;
+const filterCardBtn = document.querySelector("#filter-card-btn");
+const filterCardContainer = document.querySelector("#filters-card-container");
+const filterCard = document.querySelector("#filters-card");
+const closeFilterCardBtn = document.querySelector("#close-filter-card-btn");
+const inputs = document.querySelectorAll("input");
+let currentCharData;
+const filter = { range: [], block: [], hit: [], ch: [] };
+inputs.forEach((i) => {
+  i.addEventListener("change", () => {
+    filter.range = [];
+    filter.block = [];
+    filter.hit = [];
+    filter.ch = [];
+    document.querySelectorAll("#range-check-div input:checked").forEach((i) => {
+      if (i.checked) {
+        console.log(1323332323);
+        filter.range.push(i.value);
+      }
+    });
+    document.querySelectorAll("#block-check-div input:checked").forEach((i) => {
+      if (i.checked) {
+        filter.block.push(i.value);
+      }
+    });
+    document.querySelectorAll("#hit-check-div input:checked").forEach((i) => {
+      if (i.checked) {
+        filter.hit.push(i.value);
+      }
+    });
+    document.querySelectorAll("#ch-check-div input:checked").forEach((i) => {
+      if (i.checked) {
+        filter.hit.push(i.value);
+      }
+    });
+
+    renderFrameData(currentCharData);
+  });
+});
 const slugify = (text) => {
   return text
     .toString()
@@ -26,6 +64,20 @@ const slugify = (text) => {
     .replace(/\s+/g, "-")
     .replace(/-+/g, "-");
 };
+const createFilterCard = () => {
+  filterCardContainer.classList.remove("hidden");
+};
+filterCardBtn.onclick = createFilterCard;
+filterCardContainer.onclick = (e) => {
+  filterCardContainer.classList.add("hidden");
+};
+closeFilterCardBtn.onclick = (e) => {
+  filterCardContainer.classList.add("hidden");
+};
+filterCard.onclick = (e) => {
+  e.stopPropagation();
+};
+
 const getIndexes = async () => {
   try {
     const response = await fetch(`${import.meta.env.BASE_URL}data/index.json`);
@@ -63,7 +115,7 @@ const getData = async (character) => {
       `${import.meta.env.BASE_URL}data/${character}.json`,
     );
     const data = await response.json();
-    console.log(data);
+
     return data;
   } catch (error) {
     console.log("Erro ao carregar o JSON: " + error);
@@ -114,6 +166,8 @@ const renderCharList = (list) => {
   });
 };
 const renderFrameData = (characterData) => {
+  currentCharData = characterData;
+  console.log(characterData);
   mainContainer.classList.remove("hidden");
   charList.classList.add("hidden");
 
@@ -149,7 +203,16 @@ const renderFrameData = (characterData) => {
     ["input", "range", "DMG", "speed", "block", "hit", "ch"].forEach((data) => {
       const td = document.createElement("td");
       td.innerText = input[data] === undefined ? "?" : input[data];
+
       td.className = "p-2 border-y-zinc-800 border-x-zinc-900 border-1";
+      if (data == "block" || data == "hit" || data == "ch") {
+        if (input[data][0] === "-") {
+          td.classList.add("text-red-600");
+        } else if (input[data][0] === "+") {
+          td.classList.add("text-green-600");
+        }
+      }
+
       tr.append(td);
       tr.onclick = () => {
         tr.classList.toggle("bg-gradient-to-r");
@@ -163,7 +226,6 @@ const renderFrameData = (characterData) => {
   };
   const target = document.querySelector("#main-container");
   target.innerHTML = ``;
-  console.log("here" + characterData);
 
   const renderTableUnique = (characterData) => {
     const div = document.createElement("div");
@@ -172,7 +234,7 @@ const renderFrameData = (characterData) => {
     div.innerHTML = ` 
                <h1 class="h-min  text-gray-100 "></h1>
               <div id="table-unique-container"}
-                class="max-w-full h-95/100 max-h-d130 sm:max-h-200 bg-black/66 bg-gradijent-to-r from-gray-950/40 from-20% to-black/40 "
+                class="max-w-full h-95/100 max-h-d130 sm:max-h-200 bg-zinc-950/80 bg-gradijent-to-r from-gray-950/40 from-20% to-black/40 "
               >
                
                 <div class="h-full overflow-x-auto max-w-full ">
@@ -222,7 +284,7 @@ const renderFrameData = (characterData) => {
                         </th>
                       </tr>
                     </thead>
-                    <tbody id=${"table-unique"} class="text-blue-300/55" > </tbody>
+                    <tbody id=${"table-unique"} class="text-gray-400" > </tbody>
                   </table>
                 </div></div>`;
     target.append(div);
@@ -240,33 +302,16 @@ const renderFrameData = (characterData) => {
 
       mainBody.append(trAction);
       action.data.forEach((input) => {
-        createTr(mainBody, input);
+        if (checkInput(input)) {
+          createTr(mainBody, input);
+        }
       });
     });
   };
   renderTableUnique(characterData);
 };
-const toggleCurrentAStyle = (currentA) => {
-  currentA.classList.toggle("sm:bg-black/65");
-  currentA.classList.toggle("text-blue-500");
-  currentA.classList.toggle("sm:border-t-gray-400");
-  currentA.classList.toggle("sm:border-b-gray-600");
-  currentA.classList.toggle("sm:border-x-gray-600");
-  currentA.classList.toggle("sm:border-l-transparent");
-};
 window.addEventListener("hashchange", async () => {
   try {
-    const pastA = document.querySelector(`a.sm\\:bg-black\\/65`);
-    toggleCurrentAStyle(pastA);
-  } catch (err) {}
-  try {
-    const currentA = document.querySelector(
-      `nav a[href="${window.location.hash}"]`,
-    );
-    if (currentA) {
-      toggleCurrentAStyle(currentA);
-    }
-
     const character = window.location.hash.substring(1);
     if (character) {
       renderFrameData(await getData(character));
@@ -280,25 +325,7 @@ window.addEventListener("hashchange", async () => {
 });
 window.addEventListener("DOMContentLoaded", async () => {
   try {
-    const indexes = await getIndexes();
-    indexes.chars.forEach((value) => {
-      const a = document.createElement("a");
-      a.className =
-        "border-2 rounded-r-xl border-transparent px-2 text-nowrap flex items-center sm:w-full hover:bg-black/65 sm:p-4 ";
-      const aText = document.createElement("p");
-      aText.innerText = value;
-      aText.className = "";
-      a.append(aText);
-      a.href = "#" + value;
-      mainNav.append(a);
-    });
     if (window.location.hash) {
-      const currentA = document.querySelector(
-        `nav a[href="${window.location.hash}"]`,
-      );
-      if (currentA) {
-        toggleCurrentAStyle(currentA);
-      }
       const character = window.location.hash.substring(1);
 
       renderFrameData(await getData(character));
@@ -317,3 +344,73 @@ window.addEventListener("DOMContentLoaded", async () => {
     }
   }
 });
+const checkInput = (input) => {
+  const rangeCheck = (input) => {
+    if (filter.range.length === 0) return true;
+    const arr = [];
+    filter.range.forEach((f) => {
+      console.log("F " + f);
+      arr.push(input.range.includes(f));
+    });
+    if (arr.includes(true)) return true;
+  };
+  const blockCheck = (input) => {
+    if (filter.block.length === 0) return true;
+    const arr = filter.block.map((v) => {
+      if (v === "Negative") {
+        if (input.block.includes("-")) return true;
+      }
+      if (v === "Positive") {
+        if (input.block.includes("+")) return true;
+      }
+    });
+    if (arr.includes(true)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const hitCheck = (input) => {
+    if (filter.hit.length === 0) return true;
+    const arr = filter.hit.map((v) => {
+      if (v === "Negative") {
+        if (input.hit.includes("-")) return true;
+      }
+      if (v === "Positive") {
+        if (input.hit.includes("+")) return true;
+      }
+    });
+    if (arr.includes(true)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const chCheck = (input) => {
+    if (filter.ch.length === 0) return true;
+    const arr = filter.ch.map((v) => {
+      if (v === "Negative") {
+        if (input.ch.includes("-")) return true;
+      }
+      if (v === "Positive") {
+        if (input.ch.includes("+")) return true;
+      }
+    });
+    if (arr.includes(true)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const cond = [
+    rangeCheck(input),
+    blockCheck(input),
+    hitCheck(input),
+    chCheck(input),
+  ].every((c) => {
+    return c === true;
+  });
+
+  return cond;
+};
