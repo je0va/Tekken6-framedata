@@ -45,7 +45,7 @@ inputs.forEach((i) => {
     });
     document.querySelectorAll("#ch-check-div input:checked").forEach((i) => {
       if (i.checked) {
-        filter.hit.push(i.value);
+        filter.ch.push(i.value);
       }
     });
 
