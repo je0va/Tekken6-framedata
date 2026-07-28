@@ -1,9 +1,4 @@
 import "./style.css";
-import javascriptLogo from "./assets/javascript.svg";
-import viteLogo from "./assets/vite.svg";
-import heroImg from "./assets/hero.png";
-import { setupCounter } from "./counter.js";
-// import framedatas from "./data/framedata.json";
 const mainNav = document.querySelector("#main-nav");
 const charList = document.querySelector("#char-list");
 const charName = document.querySelector("#CharName");
@@ -15,6 +10,8 @@ const backBtnDiv = document.querySelector("#back-btn-div");
 const headerDiv = document.querySelector("#header-div");
 const backBtn = document.querySelector("#back-btn");
 backBtn.href = import.meta.env.BASE_URL;
+const apiBaseLink =
+  "https://cdn.jsdelivr.net/gh/je0va/Tekken6-framedata-db@HEAD/";
 const filterCardBtn = document.querySelector("#filter-card-btn");
 const filterCardContainer = document.querySelector("#filters-card-container");
 const filterCard = document.querySelector("#filters-card");
@@ -79,7 +76,7 @@ filterCard.onclick = (e) => {
 
 const getIndexes = async () => {
   try {
-    const response = await fetch(`${import.meta.env.BASE_URL}data/index.json`);
+    const response = await fetch(`${apiBaseLink}data/index.json`);
     const data = await response.json();
 
     return data;
@@ -110,9 +107,7 @@ const showHeader = () => {
 };
 const getData = async (character) => {
   try {
-    const response = await fetch(
-      `${import.meta.env.BASE_URL}data/${character}.json`,
-    );
+    const response = await fetch(`${apiBaseLink}data/${character}.json`);
     const data = await response.json();
 
     return data;
@@ -130,7 +125,7 @@ const createCharCard = (char) => {
   imgContainer.className = "w-full h-ffull";
   const imgElement = document.createElement("img");
   imgElement.className = "w-full h-full  aspect-square object-cover";
-  imgElement.src = `${import.meta.env.BASE_URL}/chars-imgs/${char}.jpg`;
+  imgElement.src = `${apiBaseLink}/char-imgs/${char}.jpg`;
   imgElement.alt = char;
   imgContainer.append(imgElement);
   const nameContainer = document.createElement("div");
@@ -195,7 +190,7 @@ const renderFrameData = (characterData) => {
     charName.innerText = characterData.name;
     titleImgDiv.classList.remove("hidden");
     document.querySelector("#title-char-img").src =
-      `${import.meta.env.BASE_URL}/chars-imgs/${characterData.name}.jpg`;
+      `${apiBaseLink}/char-imgs/${characterData.name}.jpg`;
   } catch (e) {}
   const createTr = (mainBody, input) => {
     const tr = document.createElement("tr");
