@@ -7,24 +7,25 @@
     <title>Tekken-6 Dataframe</title>
     <link href="/src/style.css" rel="stylesheet" />
   </head>
-  <body class="theme-1">
-    <div
-      id="app"
-      class="bg-neutral-600 fixed inset-0 bg-gradient-to-tr from-indigo-800/27 to-black/65"
+  <body class="theme-1 bg-neutral-800">
+    <!-- <div
+      class="fixed h-dvh inset-0 bg-neutral-600 bg-gradient-to-tr from-indigo-800/27 to-black/65"
     >
       <div
-        class="bg-[url(/src/assets/tekken-logo.png)] bg-no-repeat bg-top-right bg-contain sm:bg-auto h-dvh fixed inset-0 opacity-18"
+        class="w-full h-full bg-[url(/src/assets/tekken-logo.png)] bg-no-repeat bg-top-right bg-contain sm:bg-auto opacity-18"
       ></div>
-      <!-- <div
-        class="bg-[url(/src/assets/noise.svg)] z-1 bg-no-repeat bg-center bg-cover h-dvh fixed inset-0 opacity-35"
-      ></div> -->
+    </div> -->
+    <div
+      id="app"
+      class="max-h-dvh w-full z-50 w-full h-dvh min-h-dvh sm:h-full sm:max-h-full"
+    >
       <div
         id="filters-card-container"
         class="fixed hidden z-99 h-full w-full bg-black/40 flex justify-center items-center"
       >
         <div
           id="filters-card"
-          class="h-9/10 flex gap-7 flex-col max-w-95/100 w-110 bg-neutral-600 bg-gradient-to-tr from-indigo-800/27 to-black/65 p-2 border-1 border-gray-700 text-white"
+          class="h-9/10 flex gap-7 flex-col max-w-95/100 w-110 bg-neutral-800 p-2 border-1 border-gray-700 text-white"
         >
           <div class="w-full flex">
             <div class="flex-1 items-center flex">
@@ -47,7 +48,7 @@
                 >
                   <div>
                     <input type="checkbox" id="high" name="range" value="h" />
-                    <label for="high"> High</label><br />
+                    <label class="" for="high"> High</label><br />
                   </div>
                   <div>
                     <input type="checkbox" id="medium" name="range" value="m" />
@@ -87,7 +88,7 @@
               </div>
               <div class="flex flex-col gap-3">
                 <p>Hit</p>
-                <div id="hit-check-div" class="blorder-1 flex gap-2flex-wrap">
+                <div id="hit-check-div" class="blorder-1 flex gap-2 flex-wrap">
                   <div>
                     <input
                       type="checkbox"
@@ -135,86 +136,121 @@
           </div>
         </div>
       </div>
+
       <div
-        id="content"
-        class="sm:w-min mx-auto fixed inset-0 p-1 pt-2 sm:p-5 flex z-90 flex-col-reverse sm:flex-row h-dvh"
+        id="main-content"
+        class="flex max-h-full p-2 h-dvh min-h-dvh w-full sm:px-2 flex-col justify-between items-center sm:justify-start sm:px-0 sm:gap-1 sm:h-full"
       >
-        <div class="flex h-92/100 flex-1 flex-col gap-2">
-          <div class="max-h-16/100 w-full items-start gap-2">
-            <div id="back-btn-div" class="h-5/10 text-white flex items-center">
-              <a
-                id="back-btn"
-                class="items-center flex hover:text-blue-400"
-                href="/"
+        <div
+          class="h-20/100 flex flex-col justify-center w-full sm:w-270 sm:max-w-full sm:h-35 border-b-1 border-neutral-600"
+        >
+          <div
+            id="back-btn-div"
+            class="bg-red-40g0 h-5/10 text-white flex items-center"
+          >
+            <a
+              id="back-btn"
+              class="items-center flex hover:text-blue-400"
+              href="/"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 mr-2"
+                viewBox="0 0 20 20"
+                fill="currentColor"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5 mr-2"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-                <span class="text-base font-medium">Voltar para a seleção</span>
-              </a>
-            </div>
-            <!-- <div id="" class="hidden text-2xl text-stone-300 font-black px-1">
-              teste
-            </div> -->
-            <div id="header-div" class="h-5/10 w-full flex justify-between">
+                <path
+                  fill-rule="evenodd"
+                  d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+              <span class="text-base font-medium">Voltar para a seleção</span>
+            </a>
+          </div>
+
+          <div id="header-div" class="h-5/10 w-full flex justify-between py-1">
+            <div
+              id="title"
+              class="h-full flex text-gray-300 justify-start text-center sm:text-xl"
+            >
               <div
-                id="title"
-                class="h-full flex text-gray-300 justify-center items-center text-center sm:text-xl"
+                id="title-char-img-div"
+                class="h-full hidden border-neutral-950 border-2 aspect-square"
               >
-                <div
-                  id="title-char-img-div"
-                  class="h-full hidden border-black border-2"
+                <img
+                  onerror="this.classList.add('hidden')"
+                  onload="this.classList.remove('hidden')"
+                  id="title-char-img"
+                  class="max-w-full max-h-full h-full aspect-square object-cover"
+                  src=""
+                  alt=""
+                />
+              </div>
+              <p
+                id="CharName"
+                class="text-md text-stone-300 px-1 flex items-center font-semibold"
+              ></p>
+            </div>
+            <div class="flex gap-1 items-center justify-end">
+              <div
+                id="mode-view-btn-card"
+                class="text-whiteh bg-neutralg-900 text-neutral-400 sm:text-xl h-min flex rounded-xs border-1 border-neutral-900"
+              >
+                <button
+                  id="mode-view-cards-btn"
+                  class="hover:text-white cursor-pointer p-1 rounded-xs"
                 >
-                  <img
-                    id="title-char-img"
-                    class="w-full h-full aspect-square object-cover"
-                    src=""
-                    alt=""
-                  />
-                </div>
-                <p
-                  id="CharName"
-                  class="text-2xl text-stone-300 font-black px-1"
+                  Cards</button
+                ><button
+                  id="mode-view-table-btn"
+                  class="hover:text-white cursor-pointer p-1 rounded-xs"
                 >
-                  Tekken 6 Framedata
-                </p>
+                  Tabela
+                </button>
               </div>
               <div
                 id="filter-btn-div"
-                class="text-white text-xl h-full flex items-end"
+                class="text-white sm:text-xl h-full flex items-center"
               >
                 <button
                   id="filter-card-btn"
-                  class="bg-blue-900 hover:bg-blue-500 cursor-pointer p-1 rounded-xs"
+                  class="bg-neutral-900 text-neutral-400 h-min border-1 border-neutral-900 border-1 border-neutral-600 hover:bg-neutral-700 hover:text-white cursor-pointer p-1 rounded-xs"
                 >
-                  <p class="">Filtros</p>
+                  <p id="filterP" class="">Filtros</p>
                 </button>
               </div>
             </div>
           </div>
-          <div
-            class="h-95/100 sm:items-center flex flex-col w-full sm:w-full max-w-full"
-          >
-            <div
-              id="main-container"
-              class="flex gap-5 h-full sm:w-auto max-w-dvw"
-            ></div>
-            <div
-              id="char-list"
-              class="gap-2 sm:justify-center max-h-full w-full flex flex-wrap overflow-y-auto"
-            ></div>
-          </div>
         </div>
+
+        <div
+          id="main-container"
+          class="flex h-80/100 w-full sm:w-270 max-w-full"
+        ></div>
       </div>
+
+      <div
+        id="char-list-container"
+        class="mx-auto items-center max-w-full sm:p-5h flex flex-col h-dvh"
+      >
+        <div class="p-5">
+          <h1 class="text-2xl text-stone-300 px-1 p-g5">Lista</h1>
+        </div>
+        <!-- <div
+          id="char-list"
+          class="gap-2 bg-black max-h-full h-fçull flex flex-wrap overflow-y-auto"
+        ></div> -->
+      </div>
+      <!-- <div
+        id="load-container"
+        class="w-full h-full gap-3 text-white fixed flex justify-center items-center"
+      >
+        <span
+          class="w-10 h-10 border-2 animate-spin border-neutral-600 border-l-neutral-900 rounded-full"
+        ></span>
+        <p>Carregando…</p>
+      </div> -->
     </div>
     <script type="module" src="/src/main.js"></script>
   </body>
